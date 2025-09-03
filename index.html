@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エモクロア ダイスコマンド変換器</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎲 エモクロア ダイスコマンド変換器</h1>
+        <p class="subtitle">DAコマンドからDM表記（旧チャットパレット）に変換します</p>
+
+        <div class="instructions">
+            <h3>変換内容</h3>
+            <ol>
+                <li><strong>パラメータ置換：</strong> {身体}、{器用}、{精神}、{五感}、{知力}、{魅力}、{社会}、{運勢} を実際の値に置換
+                    <div class="example">例：1DA{五感} → 1DA4、1DM<={精神} → 1DM<=3</div>
+                </li>
+                <li><strong>DA→DM変換：</strong> sDAa → sDM<=s+a の形式に変換 
+                    <div class="example">例：1DA4 → 1DM<=5、2DA3 → 2DM<=5</div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <label for="input">キャラクターシートの「CCFOLIA形式」をクリックし、ペーストしてください</label>
+            <textarea id="input"
+                placeholder='{"kind":"character","data":{"params":[{"label":"身体","value":"5"},...]}}'></textarea>
+        </div>
+
+        <div class="button-container">
+            <button onclick="processData()">変換実行</button>
+        </div>
+
+        <div class="section">
+            <label for="output">DM表記でキャラ駒出力</label>
+            <textarea id="output" readonly></textarea>
+            <div class="button-container">
+                <button class="copy-button" onclick="copyOutput()">📋 結果をコピー（CCFOLIAに貼り付けてください）</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <label for="commands-output">チャットパレットのみ</label>
+            <textarea id="commands-output" readonly></textarea>
+            <div class="button-container">
+                <button class="copy-button" onclick="copyCommandsOutput()">📋 チャットパレットをコピー</button>
+            </div>
+        </div>
+
+        <div id="error-container"></div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
